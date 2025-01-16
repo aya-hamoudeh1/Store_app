@@ -8,14 +8,19 @@ class CategoriesService {
     http.Response response = await http.get(
       Uri.parse("https://fakestoreapi.com/products/category/$categoryName"),
     );
-    List<dynamic> data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      List<dynamic> data = jsonDecode(response.body);
 
-    List<ProductModel> productList = [];
-    for (int i = 0; i < data.length; i++) {
-      productList.add(
-        ProductModel.fromJson(data[i]),
-      );
+      List<ProductModel> productList = [];
+      for (int i = 0; i < data.length; i++) {
+        productList.add(
+          ProductModel.fromJson(data[i]),
+        );
+      }
+      return productList;
+    } else {
+      throw Exception(
+          "there is a problem with status code ${response.statusCode}");
     }
-    return productList;
   }
 }
