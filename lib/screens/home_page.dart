@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../widgets/custom_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -22,60 +23,23 @@ class HomePage extends StatelessWidget {
           "New Trend",
         ),
       ),
-      body: Center(
-        child: Container(
-          height: 130,
-          width: 220,
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 40,
-                color: Colors.grey.withOpacity(.2),
-                spreadRadius: 0,
-                offset: const Offset(10, 10),
-              ),
-            ],
+      body: Padding(
+        padding: const EdgeInsets.only(
+          left: 16,
+          right: 16,
+          top: 65,
+        ),
+        child: GridView.builder(
+          clipBehavior: Clip.none,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 1.5,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 100,
           ),
-          child: const Card(
-            elevation: 10,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 16,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "HandBag LV",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        r"$225",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                      Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+          itemBuilder: (context, index) {
+            return const CustomCard();
+          },
         ),
       ),
     );
