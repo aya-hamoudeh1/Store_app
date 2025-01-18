@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/models/product_model.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({
+    required this.product,
     super.key,
   });
 
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -21,10 +24,10 @@ class CustomCard extends StatelessWidget {
               ),
             ],
           ),
-          child: const Card(
+          child:  Card(
             elevation: 10,
             child: Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
                 vertical: 16,
               ),
@@ -33,25 +36,27 @@ class CustomCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "HandBag LV",
-                    style: TextStyle(
+                    product.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 16,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 3,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        r"$225",
-                        style: TextStyle(
+                        product.price.toString(),
+                        style: const TextStyle(
                           fontSize: 16,
                         ),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.favorite,
                         color: Colors.red,
                       ),
@@ -66,8 +71,9 @@ class CustomCard extends StatelessWidget {
           right: 32,
           top: -60,
           child: Image.network(
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLv5pVDQ8bpPt57LDd-X7kuCzBe6Ds75Dtcw&s",
+            product.image,
             height: 100,
+            width: 100,
           ),
         ),
       ],
