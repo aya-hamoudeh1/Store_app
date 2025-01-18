@@ -16,7 +16,7 @@ class StoreApp extends StatelessWidget {
       theme: ThemeData.light(),
       routes: {
         HomePage.id: (context) => const HomePage(),
-        UpdateProductPage.id: (context) => const UpdateProductPage()
+        UpdateProductPage.id: (context) => UpdateProductPage()
       },
       initialRoute: HomePage.id,
     );
