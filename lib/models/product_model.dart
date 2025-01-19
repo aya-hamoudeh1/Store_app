@@ -1,9 +1,9 @@
 import 'package:store_app/models/rating_model.dart';
 
 class ProductModel {
-  final int id;
+  final dynamic id;
   final String title;
-  final double price;
+  final dynamic price;
   final String description;
   final String image;
   final RatingModel rating;
@@ -25,7 +25,9 @@ class ProductModel {
       price: jsonData["price"],
       description: jsonData["description"],
       image: jsonData["image"],
-      rating: RatingModel.fromJson(jsonData["rating"]),
+      rating: RatingModel.fromJson(
+        jsonData["rating"],
+      ),
       category: jsonData["category"],
     );
   }
